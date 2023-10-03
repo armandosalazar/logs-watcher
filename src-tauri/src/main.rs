@@ -3,8 +3,8 @@
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
-fn print(contents: &str) {
-    println!("{}", contents);
+fn print(content: &str) {
+    println!("{}", content);
 }
 
 #[tauri::command]

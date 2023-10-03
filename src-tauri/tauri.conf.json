@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "logs-watcher",
+    "productName": "Logs watcher",
     "version": "0.0.0"
   },
   "tauri": {
@@ -45,7 +45,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "logs-watcher",
+        "title": "Logs watcher",
         "width": 800,
         "height": 600
       }
