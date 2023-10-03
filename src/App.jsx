@@ -3,10 +3,16 @@ import reactLogo from "./assets/react.svg";
 import {invoke} from "@tauri-apps/api/tauri";
 import {dialog, fs} from "@tauri-apps/api";
 import "./App.css";
+import {Button} from "@mui/material";
 
 function App() {
     const [path, setPath] = useState("");
     const [content, setContent] = useState("");
+    const [length, setLength] = useState(0);
+    const interval = setInterval(async () => {
+        let fileContent = await fs.readTextFile(path);
+        setContent(fileContent);
+    }, 1000);
 
     async function log(content) {
         await invoke("log", {content});
@@ -22,15 +28,9 @@ function App() {
 
             if (typeof result === "string") {
                 setPath(result);
-                try {
-                    const fileContent = await fs.readTextFile(result);
-                    setContent(fileContent);
-                } catch (error) {
-                    await log(error);
-                }
             }
-
             await log(result);
+
         } catch (error) {
             await log(error);
         }
@@ -40,6 +40,8 @@ function App() {
         <>
             <pre>{path}</pre>
             <button type="button" onClick={handleOpen}>Open file</button>
+            <Button variant="contained" onClick={handleOpen}>Open file</Button>
+            <pre>{content}</pre>
         </>
     );
 }
